@@ -73,6 +73,11 @@
 
         public void OpenCell(int column, int row)
         {
+            if (column < 0 || column >= Size || row < 0 || row >= Size)
+            {
+                throw new ArgumentException();
+            }
+
             if (GameState != GameState.InProgress)
             {
                 throw new InvalidOperationException();
@@ -81,7 +86,7 @@
             var cell = this[column, row];
             cell.IsOpen = true;
 
-            if (cell.AdjacentCells.Any(c => c.IsHole))
+            if (cell.IsHole || cell.AdjacentCells.Any(c => c.IsHole))
             {
                 return;
             }

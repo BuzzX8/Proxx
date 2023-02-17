@@ -5,8 +5,7 @@ namespace ProxxLib.Tests
         [Fact]
         public void Constructor_Correctly_Builds_Adjectent_Cells_For_Corner_Cell()
         {
-            var cellValues = GetTestCellValues();
-            var board = new Board(cellValues);
+            var board = CreateTestBoard();
 
             var cell = board[0, 0];
 
@@ -19,8 +18,7 @@ namespace ProxxLib.Tests
         [Fact]
         public void Constructor_Correctly_Builds_Adjectent_Cells_For_Edge_Cell()
         {
-            var cellValues = GetTestCellValues();
-            var board = new Board(cellValues);
+            var board = CreateTestBoard();
 
             var cell = board[0, 1];
 
@@ -35,8 +33,7 @@ namespace ProxxLib.Tests
         [Fact]
         public void OpenCell_Opens_Adjectent_Cells_For_Cell_In_Corner()
         {
-            var cellValues = GetTestCellValues();
-            var board = new Board(cellValues);
+            var board = CreateTestBoard();
 
             board.OpenCell(0, 0);
 
@@ -49,9 +46,7 @@ namespace ProxxLib.Tests
         [Fact]
         public void OpenCell_Does_Not_Opens_Adjectent_Cells_If_Hole_Among_Them()
         {
-            var cellValues = GetTestCellValues();
-            cellValues[4] = null;
-            var board = new Board(cellValues);
+            var board = CreateTestBoard(cells => cells[4] = null);//Cell (1, 1)
 
             board.OpenCell(2, 0);
 
@@ -59,6 +54,35 @@ namespace ProxxLib.Tests
             Assert.False(board[1, 0].IsOpen);
             Assert.False(board[1, 1].IsOpen);
             Assert.False(board[2, 1].IsOpen);
+        }
+
+        [Fact]
+        public void OpenCell_Sets_GameStatus_To_Won()
+        {
+            var board = CreateTestBoard();
+
+            board.OpenCell(1, 1);
+
+            Assert.Equal(GameState.Won, board.GameState);
+        }
+
+        [Fact]
+        public void OpenCell_Sets_GameStatus_To_Lost()
+        {
+            var cellValues = GetTestCellValues();
+            cellValues[0] = null;
+            var board = CreateTestBoard(cells => cells[0] = null);
+
+            board.OpenCell(0, 0);
+
+            Assert.Equal(GameState.Lost, board.GameState);
+        }
+
+        private Board CreateTestBoard(Action<int?[]>? action = null)
+        {
+            var cellValues = GetTestCellValues();
+            action?.Invoke(cellValues);
+            return new(cellValues);
         }
 
         private int?[] GetTestCellValues() => new int?[]
