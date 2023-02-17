@@ -6,14 +6,14 @@
         {
             Size = (int)Math.Sqrt(cellValues.Count());
             Cells = cellValues.Select(value => new Cell { Value = value }).ToArray();
-            BuildAdjectentCells();
+            AttachAdjectentCells();
         }
 
-        private void BuildAdjectentCells()
+        private void AttachAdjectentCells()
         {
-            var adjectencyIndicies = new[] 
-            { 
-                (-1, -1), (-1, 0), (-1, 1), 
+            var adjectencyIndicies = new[]
+            {
+                (-1, -1), (-1, 0), (-1, 1),
                 (0, -1), (0, 1),
                 (1, -1), (1, 0), (1, 1)
             };
@@ -24,7 +24,7 @@
                 var row = i % Size;
                 var cell = Cells[i];
 
-                foreach(var adjIdx in adjectencyIndicies)
+                foreach (var adjIdx in adjectencyIndicies)
                 {
                     var adjColumn = column + adjIdx.Item1;
                     var adjRow = row + adjIdx.Item2;
@@ -73,7 +73,23 @@
 
         public void OpenCell(int column, int row)
         {
-            throw new NotImplementedException();
+            if (GameState != GameState.InProgress)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var cell = this[column, row];
+            cell.IsOpen = true;
+
+            if (cell.AdjacentCells.Any(c => c.IsHole))
+            {
+                return;
+            }
+
+            foreach (var adjCell in cell.AdjacentCells)
+            {
+                adjCell.IsOpen = true;
+            }
         }
     }
 }

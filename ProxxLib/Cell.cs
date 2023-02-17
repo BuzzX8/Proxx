@@ -12,5 +12,7 @@
         public int? Value { get; init; }
 
         public List<Cell> AdjacentCells { get; } = new List<Cell>();
+
+        public override string ToString() => $"IsOpen: {IsOpen}, Value: {Value}";
     }
 }
