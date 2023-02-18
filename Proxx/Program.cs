@@ -1,13 +1,14 @@
 ﻿using ProxxLib;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 var cellValues = new int?[] 
 { 
     1, 2, 3,
-    4, null, 6,
-    7, 8, null,
+    4, 5, 6,
+    7, 8, 9,
 };
+
+cellValues = GenerateCellValues(3, 3);
 
 var board = new Board(cellValues);
 
@@ -21,6 +22,24 @@ while (board.GameState == GameState.InProgress)
 }
 
 Console.WriteLine($"You {board.GameState}");
+
+int?[] GenerateCellValues(int boardSize, int holesCount)
+{
+    var cellValues = Enumerable.Repeat(0, boardSize * boardSize)
+        .Select(_ => (int?)Random.Shared.Next(0, 4))
+        .ToArray();
+
+    var indicies = Enumerable.Range(0, cellValues.Length).ToList();
+
+    for (int i = 0; i < holesCount; i++)
+    {
+        var holeIndex = Random.Shared.Next(0, indicies.Count - 1);
+        cellValues[indicies[holeIndex]] = null;
+        indicies.RemoveAt(holeIndex);
+    }
+
+    return cellValues;
+}
 
 void DrawBoard(Board board)
 {
