@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxxLib", "ProxxLib\ProxxLib.csproj", "{04A9DF4A-C3E7-4DAC-B87C-1DA9C93CC0FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxxLib", "ProxxLib\ProxxLib.csproj", "{04A9DF4A-C3E7-4DAC-B87C-1DA9C93CC0FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxxLib.Tests", "ProxxLib.Tests\ProxxLib.Tests.csproj", "{2FB6F96F-2A42-410D-BE36-3F7791D169EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxxLib.Tests", "ProxxLib.Tests\ProxxLib.Tests.csproj", "{2FB6F96F-2A42-410D-BE36-3F7791D169EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxx", "Proxx\Proxx.csproj", "{94CB8B39-A1C7-4491-AE78-087E0BC1206F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2FB6F96F-2A42-410D-BE36-3F7791D169EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FB6F96F-2A42-410D-BE36-3F7791D169EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FB6F96F-2A42-410D-BE36-3F7791D169EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94CB8B39-A1C7-4491-AE78-087E0BC1206F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94CB8B39-A1C7-4491-AE78-087E0BC1206F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94CB8B39-A1C7-4491-AE78-087E0BC1206F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94CB8B39-A1C7-4491-AE78-087E0BC1206F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
