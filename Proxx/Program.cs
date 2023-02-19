@@ -1,14 +1,14 @@
 ﻿using ProxxLib;
 using System.Text;
 
-var cellValues = new int?[] 
-{ 
-    1, 2, 3,
-    4, 5, 6,
-    7, 8, 9,
-};
+//var cellValues = new int?[] 
+//{ 
+//    1, 2, 3,
+//    4, 5, 6,
+//    7, 8, 9,
+//};
 
-cellValues = GenerateCellValues(3, 3);
+var cellValues = GenerateCellValues(3, 3);
 
 var board = new Board(cellValues);
 

@@ -67,15 +67,21 @@ namespace ProxxLib.Tests
         }
 
         [Fact]
-        public void OpenCell_Sets_GameStatus_To_Lost()
+        public void OpenCell_Sets_GameStatus_To_Lost_And_Opens_All_Holes()
         {
             var cellValues = GetTestCellValues();
             cellValues[0] = null;
-            var board = CreateTestBoard(cells => cells[0] = null);
+            var board = CreateTestBoard(cells =>
+            {
+                cells[0] = null;
+                cells[1] = null;
+            });
 
             board.OpenCell(0, 0);
 
             Assert.Equal(GameState.Lost, board.GameState);
+            Assert.True(board[0, 0].IsOpen);
+            Assert.True(board[0, 1].IsOpen);
         }
 
         private Board CreateTestBoard(Action<int?[]>? action = null)
