@@ -78,10 +78,10 @@ string GetDisplayValueForCell(Cell cell)
 
 (int column, int row) ReadUserInput()
 {
-    Console.Write("Enter column number: ");
+    Console.Write("Enter column number (1-3): ");
     var column = int.Parse(Console.ReadLine()!);
-    Console.Write("Enter row number: ");
+    Console.Write("Enter row number (1-3): ");
     var row = int.Parse(Console.ReadLine()!);
 
-    return (column, row);
+    return (column - 1, row - 1);
 }

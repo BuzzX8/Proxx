@@ -13,7 +13,7 @@
 
         private void AttachAdjectentCells()
         {
-            var adjectencyIndicies = new[]
+            var adjectencyOffsets = new[]
             {
                 (-1, -1), (-1, 0), (-1, 1),
                 (0, -1), (0, 1),
@@ -26,7 +26,7 @@
                 var row = i % Size;
                 var cell = cells[i];
 
-                foreach (var adjIdx in adjectencyIndicies)
+                foreach (var adjIdx in adjectencyOffsets)
                 {
                     var adjColumn = column + adjIdx.Item1;
                     var adjRow = row + adjIdx.Item2;
